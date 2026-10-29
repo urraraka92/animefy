@@ -1,62 +1,232 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SONORA - Musique</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b10">
+  <title>SONORA — Ta musique, sans limites</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
 <body>
-
-  <header>
-    <a href="#" class="logo">SONO<span>RA</span> ♪</a>
-    <p>Ta musique, ton univers</p>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Bienvenue sur SONORA</p>
-        <h1>Appuie sur play.<br>Change d'univers.</h1>
-        <p class="description">
-          Rap, anime, K-pop, moderne ou classique :
-          choisis ton style et découvre tes musiques préférées.
-        </p>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="SONORA accueil">
+      <span class="brand-mark">S</span><span>SONORA</span>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <button class="nav-link active" data-view="home"><span>⌂</span> Accueil</button>
+      <button class="nav-link" data-view="search"><span>⌕</span> Rechercher</button>
+      <button class="nav-link" data-view="library"><span>▤</span> Ta bibliothèque</button>
+    </nav>
+    <div class="side-section">
+      <div class="side-heading">
+        <span>TES PLAYLISTS</span>
+        <button id="create-playlist" title="Créer une playlist">＋</button>
       </div>
-      <div class="disque">♫</div>
-    </section>
-
-    <section>
-      <h2>Choisis ton univers</h2>
-
-      <div class="genres">
-        <button class="genre active" data-genre="Tous">✨ Tout</button>
-        <button class="genre" data-genre="Rap">🎤 Rap</button>
-        <button class="genre" data-genre="Anime">🌸 Anime</button>
-        <button class="genre" data-genre="K-pop">💜 K-pop</button>
-        <button class="genre" data-genre="Moderne">⚡ Moderne</button>
-        <button class="genre" data-genre="Classique">🎻 Classique</button>
+      <button class="playlist-link" data-playlist="Favoris"><span class="playlist-dot pink">♥</span> Titres likés</button>
+      <button class="playlist-link" data-playlist="Anime Opening"><span class="playlist-dot purple">✦</span> Anime Opening</button>
+      <button class="playlist-link" data-playlist="Focus"><span class="playlist-dot blue">◉</span> Focus</button>
+      <button class="playlist-link" data-playlist="Énergie"><span class="playlist-dot orange">ϟ</span> Énergie</button>
+    </div>
+    <div class="sidebar-bottom">
+      <div class="upgrade-card">
+        <div class="upgrade-icon">✦</div>
+        <strong>Ta musique. Ton monde.</strong>
+        <p>Crée tes playlists et garde tes découvertes au même endroit.</p>
+        <button id="sidebar-create">Créer une playlist</button>
       </div>
+      <div class="profile">
+        <div class="avatar">S</div>
+        <div><strong>Auditeur SONORA</strong><small>Compte local de démonstration</small></div>
+        <span class="online-dot"></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="history-buttons">
+        <button id="back-btn" aria-label="Retour">‹</button>
+        <button id="forward-btn" aria-label="Avancer">›</button>
+      </div>
+      <label class="search-box">
+        <span>⌕</span>
+        <input id="search-input" type="search" placeholder="Que veux-tu écouter ?" autocomplete="off">
+        <kbd>CTRL K</kbd>
+      </label>
+      <button class="mobile-library" id="mobile-library">Bibliothèque</button>
+      <div class="top-actions">
+        <span class="demo-pill"><i></i> MODE DÉMO</span>
+        <button class="avatar small" title="Profil">S</button>
+      </div>
+    </header>
+
+    <section class="view active-view" id="home-view">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="pulse"></span> TON UNIVERS MUSICAL</div>
+          <h1>Le son de<br><em>ta génération.</em></h1>
+          <p>Des vibes pour chaque moment. Découvre, écoute et crée ta propre bande-son.</p>
+          <div class="hero-buttons">
+            <button class="primary-btn" id="hero-play">▶ Écouter maintenant</button>
+            <button class="glass-btn" id="hero-mix">✦ Mix aléatoire</button>
+          </div>
+          <div class="hero-meta">
+            <span><b>✦</b> Découvertes quotidiennes</span>
+            <span><b>♫</b> Ta bibliothèque, tes règles</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div>
+          <div class="orbit orbit-two"></div>
+          <div class="hero-disc">
+            <div class="disc-shine"></div>
+            <div class="disc-label">SON<br><small>ORA</small></div>
+          </div>
+          <div class="floating-note note-one">♫</div>
+          <div class="floating-note note-two">♪</div>
+          <div class="equalizer"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">FAIT POUR TOI</span><h2>Ambiances du moment</h2></div>
+          <button class="text-btn" data-view="search">Tout explorer <span>↗</span></button>
+        </div>
+        <div class="mood-grid">
+          <button class="mood-card mood-anime" data-mood="Anime"><span class="mood-symbol">✦</span><span><small>OUVERTURE ÉPIQUE</small><strong>Anime vibes</strong></span><span class="mood-arrow">↗</span></button>
+          <button class="mood-card mood-rap" data-mood="Rap"><span class="mood-symbol">〽</span><span><small>FLOW & ATTITUDE</small><strong>Rap français</strong></span><span class="mood-arrow">↗</span></button>
+          <button class="mood-card mood-pop" data-mood="Pop"><span class="mood-symbol">✳</span><span><small>EN BOUCLE</small><strong>Pop mondiale</strong></span><span class="mood-arrow">↗</span></button>
+          <button class="mood-card mood-focus" data-mood="Classique"><span class="mood-symbol">◉</span><span><small>ESPRIT CALME</small><strong>Focus & chill</strong></span><span class="mood-arrow">↗</span></button>
+        </div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">ANIME OPENINGS & OST</span><h2>Génériques cultes</h2></div>
+          <button class="text-btn" data-view="search">Explorer les titres <span>↗</span></button>
+        </div>
+        <div class="track-list" id="anime-tracks"></div>
+      </section>
+
+      <section class="content-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">RETOUR EN FORCE</span><h2>Les titres à lancer</h2></div>
+          <button class="text-btn" data-view="library">Voir la bibliothèque <span>↗</span></button>
+        </div>
+        <div class="track-list" id="home-tracks"></div>
+      </section>
+
+      <section class="content-section bottom-section">
+        <div class="section-heading">
+          <div><span class="section-kicker">TON ESPACE</span><h2>Reprends là où tu en étais</h2></div>
+        </div>
+        <div class="continue-card">
+          <div class="continue-art">SONORA<span>SESSIONS</span></div>
+          <div>
+            <small>PLAYLIST PERSONNELLE</small>
+            <h3>Ta prochaine session commence ici.</h3>
+            <p>Ajoute des titres à tes favoris et construis une playlist à ton image.</p>
+            <button class="primary-btn compact" id="continue-library">Ouvrir ma bibliothèque</button>
+          </div>
+        </div>
+      </section>
     </section>
 
-    <section>
-      <h2 id="playlist-title">À découvrir</h2>
-
-      <input
-        id="search"
-        type="search"
-        placeholder="Rechercher une musique ou un anime..."
-      >
-
-      <div id="tracks" class="tracks"></div>
+    <section class="view" id="search-view">
+      <div class="page-title">
+        <span class="section-kicker">EXPLORER LE CATALOGUE</span>
+        <h1>Qu'est-ce qui te ferait vibrer ?</h1>
+        <p>Recherche un titre, un artiste ou une ambiance.</p>
+      </div>
+      <div class="big-search">
+        <span>⌕</span>
+        <input id="big-search-input" type="search" placeholder="Ex. Blue Bird, pop, anime…">
+      </div>
+      <div class="section-heading search-heading">
+        <div><span class="section-kicker">RÉSULTATS</span><h2 id="results-title">Tout le catalogue</h2></div>
+        <span class="result-count" id="result-count"></span>
+      </div>
+      <div class="track-list" id="search-tracks"></div>
     </section>
+
+    <section class="view" id="library-view">
+      <div class="page-title library-title">
+        <div class="library-cover">♥</div>
+        <div>
+          <span class="section-kicker">TA COLLECTION PERSONNELLE</span>
+          <h1>Ta bibliothèque</h1>
+          <p>Les morceaux que tu veux retrouver.</p>
+        </div>
+      </div>
+      <div class="library-tabs">
+        <button class="library-tab selected" data-library-tab="all">Tout</button>
+        <button class="library-tab" data-library-tab="favorites">♥ Titres likés</button>
+        <button class="library-tab" data-library-tab="recent">Écoutés récemment</button>
+      </div>
+      <div class="section-heading">
+        <div><span class="section-kicker">À TOI DE JOUER</span><h2 id="library-heading">Tous les titres</h2></div>
+        <button class="glass-btn compact" id="shuffle-library">⤨ Mélanger</button>
+      </div>
+      <div class="track-list" id="library-tracks"></div>
+    </section>
+
+    <footer class="page-footer">SONORA <span>Une expérience musicale en construction.</span><span>© 2026 SONORA</span></footer>
   </main>
 
-  <footer>
-    SONORA © 2026 — La musique rassemble.
+  <footer class="player">
+    <div class="now-playing">
+      <div class="mini-cover cover-1" id="now-cover">♫</div>
+      <div class="now-text"><strong id="now-title">Choisis un morceau</strong><span id="now-artist">SONORA · Mode démo</span></div>
+      <button class="like-btn" id="now-like" aria-label="Ajouter aux favoris">♡</button>
+    </div>
+    <div class="player-center">
+      <div class="player-controls">
+        <button id="shuffle-btn" title="Aléatoire">⤨</button>
+        <button id="prev-btn" title="Précédent">◀|</button>
+        <button id="main-play" class="main-play" title="Lecture">▶</button>
+        <button id="next-btn" title="Suivant">|▶</button>
+        <button id="repeat-btn" title="Répéter">↻</button>
+      </div>
+      <div class="progress-row">
+        <span id="elapsed">0:00</span>
+        <input id="seek" type="range" min="0" max="100" value="0" aria-label="Position du morceau">
+        <span id="duration">0:00</span>
+      </div>
+    </div>
+    <div class="player-extra">
+      <button id="queue-btn" title="File d'attente">☷</button>
+      <span>♫</span>
+      <input id="player-volume" type="range" min="0" max="100" value="70" aria-label="Volume">
+    </div>
+    <audio id="audio" preload="metadata"></audio>
   </footer>
 
+  <div id="youtube-player-panel" style="display:none;position:fixed;right:18px;bottom:112px;width:320px;max-width:calc(100vw - 36px);padding:8px;background:#11131b;border:1px solid rgba(255,255,255,.15);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.45);z-index:1000;color:#fff;box-sizing:border-box">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:2px 2px 8px;font:600 12px system-ui,sans-serif;letter-spacing:.08em">
+      <span>SONORA · YOUTUBE</span>
+      <button id="close-youtube-player" type="button" aria-label="Fermer le lecteur vidéo" style="border:0;background:transparent;color:#fff;font-size:22px;cursor:pointer">×</button>
+    </div>
+    <div id="youtube-player" style="width:100%;aspect-ratio:16/9;background:#000;border-radius:8px;overflow:hidden"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog id="playlist-dialog">
+    <form method="dialog" id="playlist-form">
+      <button class="dialog-close" value="cancel" aria-label="Fermer">×</button>
+      <span class="section-kicker">NOUVELLE PLAYLIST</span>
+      <h2>Crée ton univers.</h2>
+      <p>Donne un nom à ta playlist personnelle.</p>
+      <input id="playlist-name" maxlength="40" placeholder="Ex. Nuit synthwave" required>
+      <div class="dialog-actions">
+        <button class="glass-btn" value="cancel">Annuler</button>
+        <button class="primary-btn" id="save-playlist" value="default">Créer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
